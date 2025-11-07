@@ -17,74 +17,81 @@ export function ProductCard({
   index = 0,
 }: ProductCardProps) {
   const [isAdded, setIsAdded] = useState(false);
+  const [glow, setGlow] = useState(false);
 
   const handleAdd = () => {
     if (loading) return;
+
     setIsAdded(true);
     onAddToCart(product._id);
+
+    // Glow effect on add
+    setGlow(true);
+    setTimeout(() => setGlow(false), 400);
+
     setTimeout(() => setIsAdded(false), 700);
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.03, duration: 0.25 }}
       className="w-full"
     >
-      <motion.div
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.97 }}
-        className="bg-white dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 
-        hover:shadow-lg transition-shadow cursor-pointer flex flex-col h-full"
+      <div
+        className={`rounded-lg border overflow-hidden 
+          bg-white dark:bg-gray-800 
+          transition-all cursor-pointer
+
+          ${
+            glow
+              ? "shadow-[0_0_16px_rgba(59,130,246,0.6)] dark:shadow-[0_0_20px_rgba(59,130,246,0.8)]"
+              : "shadow"
+          }
+          hover:shadow-lg
+        `}
       >
-        {/* ✅ IMAGE */}
+        {/* Image */}
         <div className="relative h-44 bg-gray-100 dark:bg-gray-700 overflow-hidden">
-          <motion.img
-            whileHover={{ scale: 1.08 }}
-            transition={{ duration: 0.4 }}
+          <img
             src={product.image}
             alt={product.name}
             className="w-full h-full object-cover"
           />
 
-          {/* ✅ CATEGORY TAG */}
-          <span className="absolute top-2 left-2 bg-white dark:bg-gray-900 text-gray-700 
-          dark:text-gray-300 border border-gray-300 dark:border-gray-600 px-2 py-1 rounded text-xs font-medium shadow-sm">
+          <span className="absolute top-2 left-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 px-2 py-1 rounded text-xs font-medium text-gray-700 dark:text-gray-300">
             {product.category}
           </span>
         </div>
 
-        {/* ✅ CONTENT */}
-        <div className="p-4 flex flex-col flex-1">
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 leading-tight line-clamp-2">
+        {/* Body */}
+        <div className="p-4 flex flex-col">
+          <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm line-clamp-2">
             {product.name}
           </h3>
 
-          <p className="text-xs text-gray-500 dark:text-gray-300 mt-1 line-clamp-2 flex-1">
+          <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
             {product.description}
           </p>
 
-          <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
-            {/* ✅ PRICE */}
-            <span className="text-lg font-semibold text-gray-900 dark:text-gray-100 tracking-tight">
+          {/* Footer */}
+          <div className="mt-4 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-3">
+            <span className="text-lg font-bold text-gray-900 dark:text-gray-100">
               ₹{product.price.toFixed(2)}
             </span>
 
-            {/* ✅ ADD BUTTON */}
-            <motion.button
-              whileTap={{ scale: 0.92 }}
+            <button
               onClick={handleAdd}
               disabled={loading}
-              className={`px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2 
-              transition relative overflow-hidden
-              ${
-                isAdded
-                  ? "bg-green-600 text-white"
-                  : "bg-blue-600 hover:bg-blue-700 text-white"
-              }
-              ${loading ? "opacity-50 cursor-not-allowed" : ""}
-            `}
+              className={`px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2 transition 
+                ${
+                  isAdded
+                    ? "bg-green-600 text-white"
+                    : "bg-blue-600 hover:bg-blue-700 text-white"
+                }
+                ${loading ? "opacity-50 cursor-not-allowed" : ""}
+              `}
             >
               {isAdded ? (
                 <>
@@ -95,10 +102,10 @@ export function ProductCard({
                   <ShoppingCart size={16} /> Add
                 </>
               )}
-            </motion.button>
+            </button>
           </div>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

@@ -1,6 +1,6 @@
 import { Product, Cart, Receipt } from '../types';
 
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = 'https://shoppingcart-1-j2l8.onrender.com/';
 
 export const api = {
   async getProducts(): Promise<Product[]> {
