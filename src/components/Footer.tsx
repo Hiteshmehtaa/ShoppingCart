@@ -1,92 +1,95 @@
 import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-gray-200 mt-16">
-      <div className="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+    <footer className="bg-gray-100 dark:bg-gray-900 text-gray-600 dark:text-gray-300 pt-14 pb-6 mt-16 border-t border-gray-300 dark:border-gray-700">
+
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
 
         {/* BRAND */}
         <div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-3">
-            VibeCommerce
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+            Vibe<span className="text-blue-600 dark:text-blue-400">Commerce</span>
           </h2>
-          <p className="text-gray-600 text-sm leading-relaxed">
-            A clean and reliable online shopping experience built for
-            convenience and quality.
+
+          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            Your trusted platform for premium quality products and a seamless shopping experience.
           </p>
         </div>
 
         {/* QUICK LINKS */}
         <div>
-          <h3 className="text-gray-900 font-medium mb-4 text-sm tracking-wide">
-            QUICK LINKS
+          <h3 className="text-gray-900 dark:text-white font-semibold mb-4 text-lg">
+            Quick Links
           </h3>
-          <ul className="space-y-2 text-gray-600 text-sm">
-            <li className="hover:text-gray-900 cursor-pointer transition">Home</li>
-            <li className="hover:text-gray-900 cursor-pointer transition">Shop</li>
-            <li className="hover:text-gray-900 cursor-pointer transition">Categories</li>
-            <li className="hover:text-gray-900 cursor-pointer transition">Offers</li>
+
+          <ul className="space-y-2 text-sm">
+            <li><Link to="/" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Home</Link></li>
+            <li><Link to="/shop" className="hover:text-blue-600 dark:hover:text-blue-400 transition">Shop</Link></li>
+            <li className="hover:text-blue-600 dark:hover:text-blue-400 transition">Categories</li>
+            <li className="hover:text-blue-600 dark:hover:text-blue-400 transition">Offers</li>
           </ul>
         </div>
 
         {/* SUPPORT */}
         <div>
-          <h3 className="text-gray-900 font-medium mb-4 text-sm tracking-wide">
-            SUPPORT
+          <h3 className="text-gray-900 dark:text-white font-semibold mb-4 text-lg">
+            Support
           </h3>
-          <ul className="space-y-2 text-gray-600 text-sm">
-            <li className="hover:text-gray-900 cursor-pointer transition">Contact Us</li>
-            <li className="hover:text-gray-900 cursor-pointer transition">FAQs</li>
-            <li className="hover:text-gray-900 cursor-pointer transition">
-              Shipping Policy
-            </li>
-            <li className="hover:text-gray-900 cursor-pointer transition">
-              Return Policy
-            </li>
+
+          <ul className="space-y-2 text-sm">
+            <li className="hover:text-blue-600 dark:hover:text-blue-400 transition">Contact Us</li>
+            <li className="hover:text-blue-600 dark:hover:text-blue-400 transition">FAQs</li>
+            <li className="hover:text-blue-600 dark:hover:text-blue-400 transition">Shipping Policy</li>
+            <li className="hover:text-blue-600 dark:hover:text-blue-400 transition">Return Policy</li>
           </ul>
         </div>
 
         {/* NEWSLETTER */}
         <div>
-          <h3 className="text-gray-900 font-medium mb-4 text-sm tracking-wide">
-            NEWSLETTER
+          <h3 className="text-gray-900 dark:text-white font-semibold mb-4 text-lg">
+            Join Our Newsletter
           </h3>
 
-          <p className="text-gray-600 text-sm mb-3">
-            Get updates on new products and exclusive offers.
+          <p className="text-sm text-gray-600 dark:text-gray-400">
+            Stay updated with exclusive deals and new arrivals.
           </p>
 
-          <div className="flex items-center border border-gray-300 rounded-md overflow-hidden mt-2">
+          {/* Input box */}
+          <div className="flex items-center bg-gray-200 dark:bg-gray-800 rounded-md px-3 py-2 mt-3 border border-gray-300 dark:border-gray-700">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-3 py-2 text-sm text-gray-700 outline-none"
+              className="flex-1 bg-transparent outline-none text-sm text-gray-900 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400"
             />
-            <button className="bg-gray-900 text-white px-4 py-2 text-sm hover:bg-black transition">
+
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md ml-2 text-sm font-medium transition">
               Subscribe
             </button>
           </div>
 
           {/* SOCIAL ICONS */}
-          <div className="flex items-center gap-3 mt-5">
+          <div className="flex items-center gap-4 mt-5">
             {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
-              <div
+              <Icon
                 key={i}
-                className="h-9 w-9 flex items-center justify-center border border-gray-300 rounded-full hover:bg-gray-100 cursor-pointer transition"
-              >
-                <Icon size={18} className="text-gray-900" />
-              </div>
+                size={22}
+                className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition"
+              />
             ))}
           </div>
         </div>
+
       </div>
 
       {/* COPYRIGHT */}
-      <div className="border-t border-gray-200 py-4">
-        <p className="text-center text-gray-500 text-xs">
+      <div className="border-t border-gray-300 dark:border-gray-700 mt-12 pt-4">
+        <p className="text-center text-gray-600 dark:text-gray-400 text-sm">
           © {new Date().getFullYear()} VibeCommerce. All rights reserved.
         </p>
       </div>
+
     </footer>
   );
 }

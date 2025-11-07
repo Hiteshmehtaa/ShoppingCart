@@ -106,3 +106,12 @@
     transform: translateY(-8px);
   }
 }
+
+html.dark {
+  background-color: #0f0f0f;
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors;
+}
